@@ -1,0 +1,24 @@
+plugins {
+    id 'team.yi.semantic-gitlog' version '0.4.1.1'
+}
+
+apply plugin: 'team.yi.semantic-gitlog'
+
+repositories {    
+    mavenLocal()  
+    mavenCentral()
+}                 
+
+changelog {
+    toRef = "master"
+    isUnstable = false
+
+    fileSets = [
+        {
+            template = file("${project.rootDir}/config/gitlog/CHANGELOG.mustache")
+            target = file("${project.rootDir}/CHANGELOG.md")
+        }
+    ]
+
+  outputs.upToDateWhen { false }
+}
